@@ -4,21 +4,17 @@
 <meta charset="utf-8">
 <!-- viewport-fit=cover is required for the safe-area insets the engine uses -->
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Pearl &amp; Co.</title>
-<meta name="description" content="Scroll to fly through the world.">
+<title>Serenity — Riverside bushveld chalet, Utopia Nature Estate</title>
+<meta name="description" content="Scroll to fly through Serenity: an off-grid riverview chalet in the South African bushveld, 30km from Rustenburg. Sleeps 4. Book on Airbnb.">
 
 <!-- Theme. These are unlayered, so they beat the engine's @layer defaults. -->
 <style>
   :root, .tz {
-    --tz-bg: #F5EDE0;
-    --tz-ink: #241d2b;
-    --tz-ink-soft: #6a6072;
-    --tz-accent: #9B7EBD;
-    /* --tz-font-display: "Your Display", ui-rounded, system-ui, sans-serif; */
-    /* --tz-font-body:    "Your Body", system-ui, sans-serif; */
+    --tz-bg: #E8DCC8;
+    --tz-ink: #33261B;
+    --tz-ink-soft: #7A6A55;
+    --tz-accent: #D98E4A;
   }
-  /* Dark theme: set these two and the copy scrim and title shadow follow.
-     :root { --tz-bg:#12101a; --tz-ink:#f3eef8; --tz-ink-soft:#a89fb8; } */
   html, body { margin: 0; }
 </style>
 </head>
@@ -28,58 +24,116 @@
 
 <script src="flight-engine.js"></script>
 <script>
+  /* Assets are served from the Higgsfield CDN (CORS: *). The engine blob-fetches
+     them, so they scrub fully regardless of the page's own host. */
+  var CDN = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3CcMICyTRUa1LlE3LLgbfZIpwHf/';
+  var A = {
+    arrival: { clip: 'a9fc2dc6-7235-44c6-8a4a-2df002680e59.mp4', clipM: '59071762-ee36-4b60-8b82-d6ba0890ef6a.mp4',
+               poster: 'a1ae95f7-880f-48a0-b74e-4c5c0e600eb2.webp', posterM: 'c382c4fb-34e3-40c4-b660-c4a7895e9c60.webp' },
+    garden:  { clip: '049cc133-0247-4d87-93cb-a560694d264b.mp4', clipM: '109eb476-510f-4ce1-8453-736a0e9b6726.mp4',
+               poster: 'f544fe60-fa1b-46fe-be3f-cbb1d5774ff9.webp', posterM: '7696e8aa-b03f-4ea0-bd92-7d2e123261d3.webp' },
+    living:  { clip: '31f17bca-8558-4900-8266-f8e40aa9baaa.mp4', clipM: '5018f2a3-1919-40ba-af9b-4cac24b6f180.mp4',
+               poster: 'adb70476-1a93-4c12-8f01-925eb0e3c1a7.webp', posterM: '3504fe03-dfa6-4bdf-befd-7c3c5155f8cd.webp' },
+    loft:    { clip: 'aa5da2b9-db08-4be0-94c2-979e2ee9dfdd.mp4', clipM: '465843c8-2b33-4b9b-a388-841b8a6324c2.mp4',
+               poster: 'fe94aa48-066e-40c7-a846-ab19924f0523.webp', posterM: '90f6dff8-f8c4-446e-9b4b-1f4a9ee5a493.webp' },
+    balcony: { clip: 'c9196a4b-68f8-4ab9-a0f8-e7fa9e5c336f.mp4', clipM: 'ed40dfef-ffeb-4c5a-bee7-aa349a6cba33.mp4',
+               poster: 'a323321a-125b-44d4-adb1-59ccbcabba55.webp', posterM: '7447c342-1733-4922-a3c1-d27b7cefb9c0.webp' },
+    river:   { clip: '2c8fac59-8713-4def-9578-64c865bcc3b6.mp4', clipM: '69836426-3f75-459b-bee8-408ebd4bba53.mp4',
+               poster: '1bc79f29-27b3-4cc8-bd84-2dd7ccfa4ebf.webp', posterM: '2d57dff5-7517-4719-b6ac-6aa2f1b7746f.webp' }
+  };
+  function asset(id, kind) { return CDN + A[id][kind]; }
+
   mountFlight(document.getElementById('flight'), {
-    brand: { name: 'Pearl & Co.', href: '#' },
-    cta:   { label: 'Find a store', href: '#finale' },
-    hint:  'scroll to fly in',
+    brand: { name: 'Serenity', href: '#top' },
+    cta:   { label: 'Book on Airbnb', href: 'https://www.airbnb.co.uk/rooms/1019574941885227427' },
+    hint:  'scroll to arrive',
 
     sceneScroll: 1.3,
-    linkScroll:  0.9,
-    crossfade:   0.12,
+    crossfade:   0.08,
 
     scenes: [
       {
-        id: 'farm', label: 'The Farms',
-        poster: 'assets/farm.webp',
-        clip:   'assets/vid/farm.mp4',
-        accent: '#8FB98A',
+        id: 'arrival', label: 'The Bushveld',
+        poster: asset('arrival', 'poster'),
+        clip:   asset('arrival', 'clip'),
+        clipMobile:   asset('arrival', 'clipM'),
+        posterMobile: asset('arrival', 'posterM'),
+        accent: '#7A8450',
         scroll: 1.5, dwell: 0.35,
-        eyebrow: 'From leaf to last sip',
-        title:   'It starts in the hills.',
-        body:    'Every batch begins on a single-origin terrace, picked by hand at first light.',
-        tags:    ['Single-origin', 'Hand-picked']
+        eyebrow: 'Utopia Nature Estate',
+        title:   'Leave the tar road behind.',
+        body:    'Thirty kilometres from Rustenburg the bushveld closes in, and the pace drops away with it.',
+        tags:    ['North West, South Africa', 'Off-grid']
       },
       {
-        id: 'kitchen', label: 'The Kitchen',
-        poster: 'assets/kitchen.webp',
-        clip:   'assets/vid/kitchen.mp4',
+        id: 'garden', label: 'Garden & Pool',
+        poster: asset('garden', 'poster'),
+        clip:   asset('garden', 'clip'),
+        clipMobile:   asset('garden', 'clipM'),
+        posterMobile: asset('garden', 'posterM'),
+        accent: '#5E8B7E',
+        eyebrow: 'Your own patch of wild',
+        title:   'A garden, a pool, the bush.',
+        body:    'A private lawn and splash pool with nothing beyond them but veld and birdsong.',
+        tags:    ['Private garden', 'Pool']
+      },
+      {
+        id: 'living', label: 'Inside',
+        poster: asset('living', 'poster'),
+        clip:   asset('living', 'clip'),
+        clipMobile:   asset('living', 'clipM'),
+        posterMobile: asset('living', 'posterM'),
         accent: '#C88A5A',
-        eyebrow: 'Made this morning',
-        title:   'Pearls, rolled by hand.',
-        body:    'Cooked in small batches through the day, never held overnight.',
-        tags:    ['Small batch', 'Cooked daily']
+        eyebrow: 'Self-catering, simply',
+        title:   'Rustic outside, warm inside.',
+        body:    'An open-plan living space and kitchen with everything you need and nothing you don’t.',
+        tags:    ['Sleeps 4', 'Fully equipped']
       },
       {
-        id: 'finale', label: 'The Cup',
-        poster: 'assets/finale.webp',
-        clip:   'assets/vid/finale.mp4',
-        accent: '#9B7EBD',
+        id: 'loft', label: 'The Loft',
+        poster: asset('loft', 'poster'),
+        clip:   asset('loft', 'clip'),
+        clipMobile:   asset('loft', 'clipM'),
+        posterMobile: asset('loft', 'posterM'),
+        accent: '#D98E4A',
+        eyebrow: 'Up in the eaves',
+        title:   'Made for deep sleep.',
+        body:    'Two upstairs bedrooms under timber beams, with the river murmuring below.',
+        tags:    ['2 bedrooms', '1 bathroom']
+      },
+      {
+        id: 'balcony', label: 'The Deck',
+        poster: asset('balcony', 'poster'),
+        clip:   asset('balcony', 'clip'),
+        clipMobile:   asset('balcony', 'clipM'),
+        posterMobile: asset('balcony', 'posterM'),
+        accent: '#7A8450',
+        scroll: 1.5, dwell: 0.4,
+        eyebrow: 'The morning coffee spot',
+        title:   'The view does the talking.',
+        body:    'A private deck over the river and mountains — sunrise coffee on one side, sundowners on the other.',
+        tags:    ['River view', 'Mountain view']
+      },
+      {
+        id: 'river', label: 'The River',
+        poster: asset('river', 'poster'),
+        clip:   asset('river', 'clip'),
+        clipMobile:   asset('river', 'clipM'),
+        posterMobile: asset('river', 'posterM'),
+        accent: '#D98E4A',
         scroll: 1.8, dwell: 0.5,
-        eyebrow: 'The payoff',
-        title:   'Yours in six minutes.',
-        body:    'Order ahead and it is waiting on the counter with your name on it.',
+        eyebrow: 'Serenity, found',
+        title:   'Fall asleep to the river.',
+        body:    'Riverside in the bushveld, with hiking trails, tubing and putt-putt on the estate — yours for a weekend.',
         cta: {
-          primary:   { label: 'Order now',    href: '/order' },
-          secondary: { label: 'Find a store', href: '/stores' }
+          primary:   { label: 'Book on Airbnb', href: 'https://www.airbnb.co.uk/rooms/1019574941885227427' },
+          secondary: { label: 'Follow on Facebook', href: 'https://www.facebook.com/serenityatutopia/' }
         }
       }
     ],
 
-    /* length = scenes.length - 1. A null entry means "crossfade this seam directly". */
-    links: [
-      'assets/vid/link1.mp4',
-      'assets/vid/link2.mp4'
-    ]
+    /* Architecture A: one continuous take, no link clips — seams crossfade directly. */
+    links: [null, null, null, null, null]
   });
 </script>
 </body>
