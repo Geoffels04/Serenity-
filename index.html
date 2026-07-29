@@ -32,18 +32,19 @@
   var CDN = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3CcMICyTRUa1LlE3LLgbfZIpwHf/';
   var A = {
     arrival: { d: '44d1547d-ceb2-4191-9592-1432093b6dab', m: 'd1041780-8474-4546-bffd-c7f3659d360f', p: '9cfbde99-929a-4ac1-a4f9-6e45fa11b2d9' },
-    patio:   { d: '302495b0-5d0b-4b55-aaf7-493ab7ab615c', m: '3c339b43-9e6b-4987-ae89-06959de0719b', p: 'aecaa782-3a66-4a46-a171-d3bc150d3512' },
     living:  { d: '54a1013c-a864-4a1a-a79a-9f73354b2736', m: '2305c5f1-7f29-412f-bd20-4d4f00e76123', p: '189c906e-07ef-4f69-b94c-4d93f08bab94' },
     kitchen: { d: 'bfaa61c9-b145-42a9-8c84-712a268670e2', m: 'bf452ad0-edab-440b-9ac0-d93fe89961e4', p: '0f99eb1b-5ca2-48e0-8c22-f481de15e13d' },
+    patio:   { d: '302495b0-5d0b-4b55-aaf7-493ab7ab615c', m: '3c339b43-9e6b-4987-ae89-06959de0719b', p: 'aecaa782-3a66-4a46-a171-d3bc150d3512' },
     bedroom: { d: '0e8a6e9e-a0e8-43ee-9bb8-85cff3ade17d', m: '2e9bfabb-0402-4b43-9a11-f1f8f4760fac', p: '9224180e-0dba-4bfa-9433-b7e45fa03ebb' },
-    pool:    { d: 'ec9b1db7-646b-44c2-b30c-68757b0fb654', m: '97a291cd-dbc2-4838-bb87-260750f3ca6e', p: 'a03dac30-f644-45ac-b373-d54f405f2a59' }
+    boma:    { d: '23622f9d-a0b1-4897-b957-0867af324ef0', m: '7bc46e29-aac0-4bd5-9c20-458483ab6e27', p: '77b3600b-f661-4926-b8a8-dd9c8d35517e' }
   };
+  /* Journey: cabin -> living -> kitchen -> patio -> upstairs bedroom -> down to the boma by the river */
   var L = {
-    l1: { d: '8fe8f416-2486-419e-84fa-e8cd8c71c660', m: 'e97e4a59-e031-4309-afec-df8d1f21e54e' },
-    l2: { d: 'c262f69c-3326-48fe-9d4b-09944e304c89', m: '756a5a56-56ca-4b24-85e6-d47e4995bd70' },
-    l3: { d: '246bd7c0-05ae-408d-a857-9e5fc1561938', m: '4ef30ac4-8eb9-4433-a9e9-dc986234ce5a' },
-    l4: { d: '18e63389-fe52-49f6-a980-ce0456436155', m: '64f7f178-c758-4285-970c-82e167b0ef67' },
-    l5: { d: '275fcf75-2d89-4d95-a2d4-0b74212e8969', m: '9a81b6fb-8a0e-42e8-a7d8-6fa5e96c0582' }
+    l1: { d: '2520581b-dbea-47b3-a7de-618ccecdc77b', m: '82afcfe4-4b17-45b6-93db-80ff25c4cb2e' },
+    l2: { d: '246bd7c0-05ae-408d-a857-9e5fc1561938', m: '4ef30ac4-8eb9-4433-a9e9-dc986234ce5a' },
+    l3: { d: '0814951f-9c38-4c4f-9018-7dac71a394a9', m: 'df806f84-287b-4bd6-8537-c918c2dcaaaa' },
+    l4: { d: '31acceeb-8c38-4318-b0fb-fb78415d4f9e', m: 'c8be9b88-7f17-4e39-a05f-48b805c68e2d' },
+    l5: { d: 'de901e64-48ab-4fef-857a-dc3092492571', m: 'a19059df-b8b1-4350-bf67-02bf075e5182' }
   };
   function scene(id, extra) {
     var base = {
@@ -76,14 +77,6 @@
         body:    'An off-grid cabin in the Buffelspoort bushveld, where the pace drops away the moment you arrive.',
         tags:    ['Buffelspoort, North West', 'Off-grid']
       }),
-      scene('patio', {
-        label: 'The Patio',
-        accent: '#5E8B7E',
-        eyebrow: 'The stoep life',
-        title:   'Mornings start out here.',
-        body:    'A shaded patio made for slow coffees, long lunches and bushveld birdsong.',
-        tags:    ['Outdoor living']
-      }),
       scene('living', {
         label: 'The Living Room',
         accent: '#C88A5A',
@@ -100,22 +93,30 @@
         body:    'Fully equipped for everything from a quick breakfast to a slow Sunday feast.',
         tags:    ['Fully equipped']
       }),
+      scene('patio', {
+        label: 'The Patio',
+        accent: '#5E8B7E',
+        eyebrow: 'The stoep life',
+        title:   'Step out into the bushveld.',
+        body:    'A shaded patio made for slow coffees, long lunches and birdsong.',
+        tags:    ['Outdoor living']
+      }),
       scene('bedroom', {
         label: 'The Bedroom',
         accent: '#7A8450',
         scroll: 1.4, dwell: 0.35,
         eyebrow: 'Made for deep sleep',
         title:   'Fall asleep to the bushveld.',
-        body:    'Comfortable beds and quiet nights — the kind of sleep you drove out here for.',
+        body:    'Upstairs, comfortable beds and quiet nights — the kind of sleep you drove out here for.',
         tags:    ['2 bedrooms', '1 bathroom']
       }),
-      scene('pool', {
-        label: 'The Pool',
+      scene('boma', {
+        label: 'The Boma',
         accent: '#5E8B7E',
         scroll: 1.8, dwell: 0.5,
         eyebrow: 'Serenity, found',
-        title:   'End every day at the water.',
-        body:    'The estate pool, hiking trails, river tubing and putt-putt — all minutes from your door.',
+        title:   'End every day at the river.',
+        body:    'Down the stairs to the stone boma: firelight, the river running past, and nothing else to do.',
         cta: {
           primary:   { label: 'Book on Airbnb', href: 'https://www.airbnb.co.uk/rooms/1019574941885227427' },
           secondary: { label: 'Follow on Facebook', href: 'https://www.facebook.com/serenityatutopia/' }
